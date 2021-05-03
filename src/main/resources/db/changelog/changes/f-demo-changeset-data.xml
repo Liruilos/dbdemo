@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="insertData1" author="bmi">
+        <insert tableName="person">
+            <column name="name" value="Maier"/>
+            <column name="firstname" value="Hans"/>
+            <column name="age" value="42"/>
+            <column name="taxnumber" value="123456789"/>
+            <column name="address" value="Park-Avenue 47"/>
+        </insert>
+    </changeSet>
+    <changeSet id="insertData2" author="bmi">
+        <insert tableName="person">
+            <column name="name" value="Siemens"/>
+            <column name="firstname" value="Thomas"/>
+            <column name="age" value="36"/>
+            <column name="taxnumber" value="159258357"/>
+            <column name="address" value="Long Street 5"/>
+            <column name="employed" valueBoolean="true"/>
+            <column name="height" valueNumeric="1.67"/>
+        </insert>
+    </changeSet>
+    <changeSet id="insertData3" author="bmi">
+        <insert tableName="person">
+            <column name="name" value="Carlson"/>
+            <column name="firstname" value="Timo"/>
+            <column name="age" value="20"/>
+            <column name="taxnumber" value="1458745236"/>
+            <column name="address" value="Main Road 18"/>
+            <column name="employed" valueBoolean="tru"/>
+        </insert>
+    </changeSet>
+    <changeSet id="insertData4" author="bmi">
+        <insert tableName="person">
+            <column name="name" value="Bradford"/>
+            <column name="firstname" value="Frank"/>
+            <column name="age" value="46"/>
+            <column name="taxnumber" value="197643594"/>
+            <column name="address" value="Man Street 6"/>
+            <column name="employed" value="f"/>
+        </insert>
+    </changeSet>
+    <changeSet id="updateData1" author="bmi">
+        <update tableName="person">
+            <column name="employed" valueBoolean="false"/>
+            <where>name='Maier'</where>
+        </update>
+    </changeSet>
+    <changeSet id="updateData2" author="bmi">
+        <update tableName="person">
+            <column name="height" valueNumeric="1.78"/>
+            <where>name = :value</where>
+            <whereParams>
+                <param value="Maier"/>
+            </whereParams>
+        </update>
+    </changeSet>
+    <changeSet id="deleteData1" author="bmi">
+        <delete tableName="person">
+            <where>age > 40</where>
+        </delete>
+    </changeSet>
+
+</databaseChangeLog>
