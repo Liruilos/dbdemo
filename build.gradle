@@ -1,7 +1,11 @@
 plugins {
+	// Required for basic Spring boot project
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+
+	// Not required for using liquibase, but allows us to run liquibase update and rollback commands via gradle for a non-spring boot project
+	id 'org.liquibase.gradle' version '1.2.1'
 }
 
 group = 'net.grallarius'
@@ -12,16 +16,29 @@ repositories {
 	mavenCentral()
 }
 
+// Used to set up dependencies for liquibase plugin (optional)
+configurations {
+	liquibaseRuntime.extendsFrom runtime
+}
+
 dependencies {
 
+	// Lombok: helper plugin for java annotations (especially useful for entities)
 	compileOnly('org.projectlombok:lombok:1.16.20')
+
+	// Spring boot dependencies
 	compile('org.springframework.boot:spring-boot-starter')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.liquibase:liquibase-core')
-	runtime('org.postgresql:postgresql:42.2.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
+	// Liquibase and sql dependencies
+	compile('org.liquibase:liquibase-core')
+	runtime('org.postgresql:postgresql:42.2.1')
+
+	// Dependencies for running liquibase plugin (optional)
+	liquibaseRuntime 'org.liquibase:liquibase-core:3.8.1'
+	liquibaseRuntime 'org.postgresql:postgresql:42.2.1'
 }
 
 test {
