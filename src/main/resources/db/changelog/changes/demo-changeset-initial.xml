@@ -19,5 +19,18 @@
             <dropTable tableName="person"/>
         </rollback>
     </changeSet>
+    <changeSet id="2" author="bmi">
+        <addColumn tableName="person">
+            <column name="firstname" type="varchar(40)"/>
+            <column name="age" type="int"/>
+            <column name="taxnumber" type="int"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="3" author="bmi">
+        <addColumn tableName="person">
+            <column name="employed" type="boolean"/>
+            <column name="height" type="numeric(3,2)"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>
