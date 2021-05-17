@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="dataInsert1-Artwork" author="BMI">
+        <insert tableName="artwork">
+            <column name="name" value="Die Beständigkeit der Erinnerung"/>
+            <column name="description"
+                    value="Die Beständigkeit der Erinnerung, auch Die zerrinnende Zeit oder Die weichen Uhren genannt, ist das bekannteste Gemälde des surrealistischen Malers Salvador Dalí aus dem Jahr 1931."/>
+            <column name="size" value="24 cm x 33 cm"/>
+            <column name="price" value="110000"/>
+        </insert>
+
+        <insert tableName="artwork">
+            <column name="name" value="Das Abendmahl"/>
+            <column name="description"
+                    value="Das Abendmahl des italienischen Malers Leonardo da Vinci ist eines der berühmtesten Wandgemälde der Welt. Das in der Seccotechnik ausgeführte Werk wurde in den Jahren 1494 bis 1497 im Auftrag des Mailänder Herzogs Ludovico Sforza geschaffen."/>
+            <column name="size" value="4,6 m x 8,8 m"/>
+            <column name="price" value="450000000"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="dataInsert2-Artist" author="BMI">
+        <insert tableName="artist">
+            <column name="name" value="Leonardo da Vinci"/>
+            <column name="dob" valueDate="1452-04-15"/>
+        </insert>
+        <insert tableName="artist">
+            <column name="name" value="Salvador Dalí"/>
+            <column name="dob" valueDate="1904-05-11"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
