@@ -33,4 +33,9 @@
         </insert>
     </changeSet>
 
+    <changeSet id="dataInsert3-ForeignKeys" author="BMI">
+        <sql>insert into lk_artist_artwork (artist_id, artwork_id) select a.id, aw.id from artist a, artwork aw where a.name = 'Leonardo da Vinci' and aw.name = 'Das Abendmahl'</sql>
+        <sql>insert into lk_artist_artwork (artist_id, artwork_id) select a.id, aw.id from artist a, artwork aw where a.name = 'Salvador Dalí' and aw.name = 'Die Beständigkeit der Erinnerung'</sql>
+    </changeSet>
+
 </databaseChangeLog>

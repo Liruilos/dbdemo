@@ -4,6 +4,12 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet id="dataDelete1" author="BMI">
+        <delete tableName="lk_artist_artwork">
+            <where>artist_id = (select a.id from artist a where a.dob &lt; :value)</where>
+            <whereParams>
+                <param value="1900-01-01"/>
+            </whereParams>
+        </delete>
         <delete tableName="artist">
             <where>dob &lt; :value</where>
             <whereParams>
