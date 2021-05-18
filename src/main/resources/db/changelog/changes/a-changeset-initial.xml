@@ -80,4 +80,29 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="a5" author="bmi">
+        <createTable tableName="lk_artist_artwork">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="artist_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="artwork_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="a6" author="bmi">
+        <addForeignKeyConstraint baseTableName="lk_artist_artwork" baseColumnNames="artist_id"
+                                 constraintName="fk_artist_id"
+                                 referencedTableName="artist"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="lk_artist_artwork" baseColumnNames="artwork_id"
+                                 constraintName="fk_artwork_id"
+                                 referencedTableName="artwork"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>
