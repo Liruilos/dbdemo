@@ -5,12 +5,17 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="dataInsert1-Artwork" author="BMI">
+        <preConditions>
+            <tableExists tableName="artwork"/>
+        </preConditions>
+
         <insert tableName="artwork">
             <column name="name" value="Die Beständigkeit der Erinnerung"/>
             <column name="description"
                     value="Die Beständigkeit der Erinnerung, auch Die zerrinnende Zeit oder Die weichen Uhren genannt, ist das bekannteste Gemälde des surrealistischen Malers Salvador Dalí aus dem Jahr 1931."/>
             <column name="size" value="24 cm x 33 cm"/>
             <column name="price" value="110000"/>
+            <column name="weight" valueNumeric="8.75"/>
         </insert>
 
         <insert tableName="artwork">
@@ -19,10 +24,16 @@
                     value="Das Abendmahl des italienischen Malers Leonardo da Vinci ist eines der berühmtesten Wandgemälde der Welt. Das in der Seccotechnik ausgeführte Werk wurde in den Jahren 1494 bis 1497 im Auftrag des Mailänder Herzogs Ludovico Sforza geschaffen."/>
             <column name="size" value="4,6 m x 8,8 m"/>
             <column name="price" value="450000000"/>
+            <column name="weight" valueNumeric="13.43"/>
+            <column name="sold" valueBoolean="true"/>
         </insert>
     </changeSet>
 
     <changeSet id="dataInsert2-Artist" author="BMI">
+        <preConditions>
+            <tableExists tableName="artist"/>
+        </preConditions>
+
         <insert tableName="artist">
             <column name="name" value="Leonardo da Vinci"/>
             <column name="dob" valueDate="1452-04-15"/>
@@ -34,8 +45,20 @@
     </changeSet>
 
     <changeSet id="dataInsert3-ForeignKeys" author="BMI">
-        <sql>insert into lk_artist_artwork (artist_id, artwork_id) select a.id, aw.id from artist a, artwork aw where a.name = 'Leonardo da Vinci' and aw.name = 'Das Abendmahl'</sql>
-        <sql>insert into lk_artist_artwork (artist_id, artwork_id) select a.id, aw.id from artist a, artwork aw where a.name = 'Salvador Dalí' and aw.name = 'Die Beständigkeit der Erinnerung'</sql>
+        <preConditions>
+            <and>
+                <tableExists tableName="artwork"/>
+                <tableExists tableName="artist"/>
+                <tableExists tableName="lk_artist_artwork"/>
+            </and>
+        </preConditions>
+
+        <sql>insert into lk_artist_artwork (artist_id, artwork_id) select a.id, aw.id from artist a, artwork aw where
+            a.name = 'Leonardo da Vinci' and aw.name = 'Das Abendmahl'
+        </sql>
+        <sql>insert into lk_artist_artwork (artist_id, artwork_id) select a.id, aw.id from artist a, artwork aw where
+            a.name = 'Salvador Dalí' and aw.name = 'Die Beständigkeit der Erinnerung'
+        </sql>
     </changeSet>
 
 </databaseChangeLog>

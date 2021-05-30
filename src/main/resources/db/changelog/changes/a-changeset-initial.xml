@@ -105,4 +105,11 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="a7" author="bmi">
+        <addColumn tableName="artwork">
+            <column name="sold" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="weight" type="NUMERIC(6,2)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
