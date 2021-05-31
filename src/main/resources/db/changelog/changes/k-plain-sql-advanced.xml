@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="k1" author="LW">
+
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(1) FROM artwork WHERE name = 'Der Schrei'
+            </sqlCheck>
+        </preConditions>
+
+        <sql>
+            update artwork
+            set price = (
+            SELECT MAX(price)
+            FROM artwork),
+            description = (
+            SELECT name
+            FROM artist
+            WHERE (artist.id = artwork.id))
+            where sold = false and name = 'Der Schrei';
+        </sql>
+
+        <comment>
+            Wenn man den vorherigen Wert von price oder description nicht manuell abspeichert, kann man das nicht so einfach reverten
+        </comment>
+
+    </changeSet>
+</databaseChangeLog>

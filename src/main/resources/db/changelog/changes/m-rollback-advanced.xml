@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="m1" author="LW">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="customer" columnName="dob"/>
+            </not>
+        </preConditions>
+
+        <addColumn catalogName="postgres"
+                   schemaName="public"
+                   tableName="customer">
+            <column name="dob" type="DATE"/>
+        </addColumn>
+
+        <sql>
+            update customer
+            set dob = '1990-01-01'
+            where dob is null;
+        </sql>
+
+        <comment>
+            Hier können wir den Rollback für Liquibase definieren:
+            Wir wollen die Spalte behalten, aber die Daten in der Spalte wieder für alle Einträge auf NULL setzten
+
+            Aufrufen mit:
+            gradlew rollbackCount -PliquibaseCommandValue="1"
+        </comment>
+
+        <rollback>
+            <update tableName="customer">
+                <column name="dob" value="NULL"/>
+            </update>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

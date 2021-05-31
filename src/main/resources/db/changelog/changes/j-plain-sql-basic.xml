@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="j1" author="LW">
+
+        <comment>
+            Alles was man mit SQL machen darf kann man auch mit dem sql tag in liquibase machen
+            Auch ON CONFLICT als Alternative oder Zusatzt für Preconditions
+        </comment>
+
+        <sql>
+            insert into artist (id, name, dob)
+            values (3, 'Edvard Munch', '1863-12-12')
+            ON CONFLICT DO NOTHING;
+        </sql>
+
+    </changeSet>
+
+    <changeSet id="j2" author="LW">
+
+        <sql>
+            insert into artwork (id, name, description, size, price, sold, weight)
+            values (3, 'Der Schrei',
+            'Eine menschliche Figur unter einem roten Himmel, die ihre Hände gegen den Kopf presst, während sie Mund und Augen angstvoll aufreißt.',
+            '91 x 73,5cm', '91000000', 'false', '10.25')
+            ON CONFLICT (id) DO UPDATE SET sold = false, price = '910';
+        </sql>
+
+    </changeSet>
+
+    <changeSet id="j3" author="LW">
+        <preConditions>
+            <tableExists tableName="lk_artist_artwork"/>
+        </preConditions>
+
+        <sql>
+            insert into lk_artist_artwork (artist_id, artwork_id) select a.id, aw.id from artist a, artwork aw where
+            a.name = 'Edvard Munch' and aw.name = 'Der Schrei'
+            ON CONFLICT DO NOTHING;
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

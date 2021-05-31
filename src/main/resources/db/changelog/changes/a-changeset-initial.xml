@@ -112,4 +112,20 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="a8" author="LW">
+        <insert tableName="customer">
+            <column name="name" value="Sally Sermon"/>
+            <column name="address" value="Nordstr. 18"/>
+            <column name="company" value="Cookie Palace"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="name" value="Gerald Grant"/>
+            <column name="address" value="Bahnhofstr. 203"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="name" value="Holly Hermit"/>
+            <column name="address" value="Bingehof 2A"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
