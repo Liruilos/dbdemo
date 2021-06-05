@@ -4,11 +4,13 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+    <!-- Erstellen einer Tabelle mit 4 Spalten -->
+
     <changeSet author="mike" id="b1">
         <createTable tableName="transaction">
             <column name="id" type="INT" autoIncrement="true"/>
-            <column name="customer" type="VARCHAR(255)"/>
-            <column name="artwork" type="VARCHAR(255)"/>
+            <column name="customer" type="INT"/>
+            <column name="artwork" type="INT"/>
             <column name="sale_day" type="DATE"/>
         </createTable>
     </changeSet>

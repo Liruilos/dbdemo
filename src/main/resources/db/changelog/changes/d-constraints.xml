@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <!-- Erstellen eines Foreign keys auf eine andere Tabelle -->
+
+    <changeSet author="mike" id="d1">
+        <addForeignKeyConstraint baseTableName="transaction" baseColumnNames="employee"
+                                 constraintName="fk_soldby_employee_id"
+                                 referencedTableName="employee"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <!-- Primary key einer Tabelle wird nachträglich hinzugefügt -->
+
+    <changeSet id="d2" author="mike">
+        <addPrimaryKey tableName="transaction" columnNames="id"/>
+    </changeSet>
+
+    <!-- Mehrere Änderungen in einem changeset -->
+
+    <changeSet id="d3" author="mike">
+        <addForeignKeyConstraint baseTableName="transaction" baseColumnNames="artwork" constraintName="fk_got_sold_id"
+                                 referencedTableName="artwork"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="transaction" baseColumnNames="customer"
+                                 constraintName="fk_bought_artwork"
+                                 referencedTableName="customer"
+                                 referencedColumnNames="id"/>
+
+        <addNotNullConstraint tableName="transaction" columnName="sale_day"/>
+    </changeSet>
+</databaseChangeLog>
