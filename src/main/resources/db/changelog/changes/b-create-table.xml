@@ -6,6 +6,7 @@
 
     <changeSet author="mike" id="b1">
         <createTable tableName="transaction">
+            <column name="id" type="INT" autoIncrement="true"/>
             <column name="customer" type="VARCHAR(255)"/>
             <column name="artwork" type="VARCHAR(255)"/>
             <column name="sale_day" type="DATE"/>
