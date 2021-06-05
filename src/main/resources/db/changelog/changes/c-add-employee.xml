@@ -11,4 +11,7 @@
             <column name="employee" type="INT"/>
         </addColumn>
     </changeSet>
+    <changeSet id="c2" author="mike">
+        <tagDatabase tag="pre-constraints"/>
+    </changeSet>
 </databaseChangeLog>
