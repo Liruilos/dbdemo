@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="mike" id="e1">
+        <preConditions onFail="HALT">
+            <foreignKeyConstraintExists foreignKeyTableName="transaction" foreignKeyName="fk_got_sold_id"/>
+        </preConditions>
+    </changeSet>
+
+    <changeSet author="mike" id="e2">
+        <preConditions onFail="WARN" onFailMessage="Could not find foreign key">
+            <foreignKeyConstraintExists foreignKeyTableName="transaction" foreignKeyName="unkown_key"/>
+        </preConditions>
+    </changeSet>
+
+</databaseChangeLog>
