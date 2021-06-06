@@ -13,6 +13,9 @@
             <column name="employee" type="INT"/>
         </addColumn>
     </changeSet>
+
+    <!-- Speichert den aktuellen Zustand der Datenbank -->
+
     <changeSet id="c2" author="mike">
         <tagDatabase tag="pre-constraints"/>
     </changeSet>
