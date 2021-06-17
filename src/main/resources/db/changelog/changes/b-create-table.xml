@@ -18,4 +18,14 @@
             <column name="sale_day" type="DATE"/>
         </createTable>
     </changeSet>
+
+    <!-- Hinzufügen einer Spalte zu einer bestehenden Tabelle -->
+
+    <changeSet author="mike" id="b2">
+        <addColumn catalogName="postgres"
+                   schemaName="public"
+                   tableName="transaction">
+            <column name="employee" type="INT"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
