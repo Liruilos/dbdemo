@@ -4,7 +4,7 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <!-- Wird in 'c-database-tag.xml' erkklärt -->
+    <!-- Wird in 'c-database-tag.xml' erklärt -->
 
     <changeSet id="b0" author="mike">
         <tagDatabase tag="start"/>
@@ -19,6 +19,15 @@
             <column name="artwork" type="INT"/>
             <column name="sale_day" type="DATE"/>
         </createTable>
+        <comment>
+            create table transaction
+            (
+            id int,
+            sale_day date,
+            customer int,
+            artwork int
+            );
+        </comment>
     </changeSet>
 
     <!-- Hinzufügen einer Spalte zu einer bestehenden Tabelle -->
@@ -29,22 +38,9 @@
                    tableName="transaction">
             <column name="employee" type="INT"/>
         </addColumn>
+        <comment>
+            alter table transaction
+            add employee int;
+        </comment>
     </changeSet>
 </databaseChangeLog>
-
-<!--
-
-Wenn man dieses Changelog als sql script ausführen wollen würde:
-
-create table transaction
-(
-    id int,
-    sale_day date,
-    customer int,
-    artwork int
-);
-
-alter table transaction
-    add employee int;
-
--->
