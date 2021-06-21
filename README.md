@@ -1,6 +1,13 @@
 # dbdemo
  DB Change Management Demo
  
+  - Basics  
+    
+Changelog Dateien b - e zeigen kurz die grundlegenden Funktionen von ChangeSets. 
+Dort wird gezeigt, wie man damit Stück für Stück eine Tabelle erstellt und bearbeitet.
+Zunächst wird eine Tabelle mit einigen Spalten erstellt.  
+Anschließend werden dieser Constraints, also ein Primary Key sowie einige Foreign Keys, hinzugefügt.  
+Zum Schluss nochmal ein kurzes Beispiel, wie PreConditions funktionieren.
  
  - Plain SQL
  

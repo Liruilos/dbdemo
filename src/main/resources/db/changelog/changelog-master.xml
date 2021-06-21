@@ -4,6 +4,12 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+    <!-- Hier wird Liquibase mitgeteilt, welche Changelog Dateien es berücksichtigen soll -->
+
+    <!-- IncludeAll besagt, dass alle Changelogs eines Ordners benutzt werden sollen -->
     <includeAll path="src/main/resources/db/changelog/changes/"/>
 
+
+    <!-- Liquibase soll nur eine bestimmte Datei benutzen (Tag Kann mehrmals hier geschrieben werden) -->
+    <!-- <include file="src/main/resources/db/changelog/changes/a-changeset.initial.xml"/> -->
 </databaseChangeLog>
