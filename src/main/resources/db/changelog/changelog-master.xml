@@ -4,11 +4,6 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <!--<includeAll path="src/main/resources/db/changelog/changes/"/>-->
-    <include file="src/main/resources/db/changelog/changes/a-changeset-initial.xml"/>
-    <!--<include file="src/main/resources/db/changelog/changes/b-create-table.xml"/>-->
-    <!--<include file="src/main/resources/db/changelog/changes/c-database-tag.xml"/>-->
-    <!--<include file="src/main/resources/db/changelog/changes/d-constraints.xml"/>-->
-    <!--<include file="src/main/resources/db/changelog/changes/e-preconditions.xml"/>-->
+    <includeAll path="src/main/resources/db/changelog/changes/"/>
 
 </databaseChangeLog>
